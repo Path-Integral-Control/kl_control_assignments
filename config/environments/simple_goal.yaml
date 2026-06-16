@@ -1,0 +1,13 @@
+# Compatible with: variational, gridworld, mppi_navigation, spine
+compatible_with: [variational, gridworld, mppi_navigation, spine]
+
+start_pos: [0.0, 0.0]
+goal_pos: [5.0, 5.0]
+goal_weight: 10.0
+velocity_weight: 5.0
+control_weight: 0.1
+
+boundary:
+  enabled: false
+
+obstacles: []

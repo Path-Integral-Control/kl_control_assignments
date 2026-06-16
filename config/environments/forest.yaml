@@ -1,0 +1,22 @@
+# Compatible with: variational, mppi_navigation
+# NOT compatible with: gridworld (200 tiny circles unresolvable at coarse grid)
+compatible_with: [variational, mppi_navigation]
+
+start_pos: [0.0, 5.0]
+goal_pos: [10.0, 5.0]
+goal_weight: 30.0
+velocity_weight: 10.0
+control_weight: 0.5
+
+boundary:
+  enabled: true
+  width: 14.0
+  height: 14.0
+
+obstacles:
+  - type: forest
+    position: [5.0, 5.0]
+    size: [10.0, 10.0]
+    density: 2
+    tree_radius: 0.3
+    seed: 42

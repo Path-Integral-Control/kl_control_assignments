@@ -1,0 +1,49 @@
+# Fixed-Wing Aircraft Parameters
+# Small foam RC aircraft (Sport Cub class, ~57g, 0.617m wingspan)
+
+# --- Propulsion ---
+thr_max: 0.35       # Maximum thrust (N)
+
+# --- Mass & Geometry ---
+m: 0.057            # Mass (kg)
+XCG: 0.25           # Center of gravity (nondimensional chord)
+XAC: 0.25           # Aerodynamic center (nondimensional chord)
+S: 0.05553          # Wing area (m^2)
+rho: 1.225          # Air density (kg/m^3)
+g: 9.81             # Gravity (m/s^2)
+
+# --- Inertia ---
+Jx: 1.5e-4          # Roll moment of inertia (kg⋅m^2)
+Jy: 2.0e-4          # Pitch moment of inertia (kg⋅m^2)
+Jz: 2.2e-4          # Yaw moment of inertia (kg⋅m^2)
+Jxz: 0.0            # Product of inertia (kg⋅m^2)
+cbar: 0.09           # Mean aerodynamic chord (m)
+span: 0.617          # Wingspan (m)
+
+# --- Longitudinal Aerodynamics ---
+CL0: 0.60           # Lift coefficient at zero angle of attack
+CLa: 8.0            # Lift curve slope (per rad)
+CD0: 0.14           # Parasitic drag coefficient
+CDCLS: 0.055        # Lift-induced drag coefficient
+Cm0: 0.102          # Zero-lift pitching moment
+Cma: 1.5            # Pitching moment due to angle of attack (per rad)
+Cmq: -12.0          # Pitch damping (per rad/s)
+
+# --- Control Effectiveness ---
+Clda: 0.24          # Roll moment from aileron (per rad)
+Cldr: 0.05          # Roll moment from rudder (per rad)
+Cmde: 0.9           # Pitch moment from elevator (per rad)
+Cndr: 0.22          # Yaw moment from rudder (per rad)
+Cnda: 0.03          # Yaw moment from aileron (per rad)
+CYda: 0.02          # Side force from aileron (per rad)
+CYdr: -0.18         # Side force from rudder (per rad)
+
+# --- Lateral-Directional Stability ---
+Cnb: 0.10           # Yaw stiffness (per rad)
+Clp: -1.30          # Roll damping (per rad/s)
+Cnr: -0.12          # Yaw damping (per rad/s)
+Cnp: -0.10          # Yaw from roll rate (per rad/s)
+Clr: 0.10           # Roll from yaw rate (per rad/s)
+CYb: -0.85          # Side force from sideslip (per rad)
+CYr: 0.25           # Side force from yaw rate (per rad/s)
+CYp: 0.15           # Side force from roll rate (per rad/s)

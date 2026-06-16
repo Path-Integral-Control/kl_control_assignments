@@ -1,0 +1,28 @@
+# Compatible with: variational, mppi_navigation
+# NOT compatible with: gridworld (thin box walls), spine
+compatible_with: [variational, mppi_navigation]
+
+start_pos: [0.0, 5.0]
+goal_pos: [10.0, 5.0]
+goal_weight: 30.0
+velocity_weight: 10.0
+control_weight: 0.5
+
+boundary:
+  enabled: true
+  width: 14.0
+  height: 14.0
+
+obstacles:
+  - type: box
+    position: [5.0, 2.0]
+    size: [0.5, 4.0]
+    cost: 100000.0
+  - type: box
+    position: [5.0, 8.0]
+    size: [0.5, 4.0]
+    cost: 100000.0
+  - type: box
+    position: [5.0, 5.0]
+    size: [0.5, 1.5]
+    cost: 100000.0

@@ -1,0 +1,35 @@
+# Compatible with: variational, gridworld, mppi_navigation, spine
+compatible_with: [variational, gridworld, mppi_navigation, spine]
+
+start_pos: [1.0, 9.0]
+goal_pos: [9.0, 1.0]
+goal_weight: 25.0
+velocity_weight: 10.0
+control_weight: 0.5
+
+boundary:
+  enabled: true
+  width: 14.0
+  height: 14.0
+
+obstacles:
+  - type: gaussian
+    position: [3.0, 7.0]
+    amplitude: 800.0
+    spread: 1.5
+  - type: gaussian
+    position: [7.0, 4.0]
+    amplitude: 600.0
+    spread: 1.2
+  - type: gaussian
+    position: [5.0, 5.0]
+    amplitude: 400.0
+    spread: 0.8
+  - type: gaussian
+    position: [4.0, 2.0]
+    amplitude: 300.0
+    spread: 1.0
+  - type: gaussian
+    position: [8.0, 8.0]
+    amplitude: 500.0
+    spread: 1.0

@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "KL Control Examples"
+type: software
+authors:
+  - given-names: Sashank
+    family-names: Modali
+  - given-names: Micah
+    family-names: Robinson
+  - given-names: Takashi
+    family-names: Tanaka
+repository-code: "https://github.com/Path-Integral-Control/kl_control_examples"
+license: MIT

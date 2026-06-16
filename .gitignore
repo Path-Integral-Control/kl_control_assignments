@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.code-workspace
+.vscode/
+.idea/
+
+# Generated outputs
+examples/results/discrete/
+examples/results/continuous/
+examples/results/variational/
+*.gif
+*.png
+
+# Allow committed assets
+!examples/results/images/
+!examples/results/images/*.png
+!examples/results/videos/
+!examples/results/videos/*.mp4

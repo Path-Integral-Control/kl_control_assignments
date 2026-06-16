@@ -1,0 +1,38 @@
+# Fixed-Wing Nominal Controller Gains
+# Energy-based PD controller for path-following MPPI nominal policy
+
+# --- Outer Loop (Energy → Thrust, Flight Path Angle → Pitch) ---
+K_thrustp: 0.3
+K_energy_p: 10.0
+K_energy_d: 0.6
+K_pitchp: 0.85
+K_gamma_p: 2.8
+K_alt: 1.0
+trim_thrust: 3.5
+trim_thrust_low: 2.8
+alt_trim_low: 2.5
+alt_trim_high: 7.0
+
+# --- Inner Loop Elevator (Pitch PD) ---
+K_elevp: 1.2
+K_q: 0.7
+K_phi_elev: 1.0
+trim_elev: 0.0
+
+# --- Inner Loop Aileron (Heading → Roll PD) ---
+k_chi: 1.5
+k_chi_d: 0.1
+K_phi_p: 3.5
+K_phi_d: 0.2
+phi_lim_deg: 55.0
+chi_deadband_deg: 0.5
+curvature_blend_gain: 4.0
+da_max: 1.0
+trim_ail: 0.0
+
+# --- Rudder (Adverse Yaw Compensation) ---
+Cnda: 0.03
+Cndr: 0.12
+
+# --- Vehicle ---
+mass: 0.057

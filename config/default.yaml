@@ -1,0 +1,18 @@
+simulation:
+  dt: 0.05
+  max_steps: 300
+  environment: "config/environments/three_mountains.yaml"
+
+system:
+  model: "double_integrator"    # double_integrator | unicycle | cartpole | fixed_wing
+  noise_sigma: [[0.5, 0.0],
+                [0.0, 0.5]]
+
+controller:
+  type: "discrete"              # discrete | continuous
+  n_rollouts: 1024
+  horizon: 40
+  lambda_weight: 10.0
+  noise_sigma: [[1.0, 0.0],
+                [0.0, 1.0]]
+  use_gpu: false
