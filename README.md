@@ -1,4 +1,4 @@
-# KL Control Assignments test
+# KL Control Assignments
 
 Course materials for Stochastic Optimal Control course. Three assignments cover the variational free energy formula, linearly solvable MDPs, and path integral control.
 
