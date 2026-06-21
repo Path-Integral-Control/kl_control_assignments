@@ -22,12 +22,16 @@ source .venv/bin/activate
 pip install -r requirements-base.txt
 ```
 
-For GPU acceleration (optional), install CuPy matching your CUDA version and the corresponding cuBLAS runtime:
+For GPU acceleration (optional), first check your CUDA version:
+```bash
+nvcc --version       # or: nvidia-smi
+```
+Then install CuPy matching your CUDA version and the corresponding cuBLAS runtime:
 ```bash
 pip install cupy-cuda12x nvidia-cublas-cu12    # CUDA 12.x
 pip install cupy-cuda11x nvidia-cublas-cu11    # CUDA 11.x
 ```
-If CuPy's CCCL headers fail to compile, pin to a known working version (e.g. `cupy-cuda12x==14.0.0`).
+If CuPy fails to compile its CCCL headers on first use in an example, pin to a known working version (e.g. `cupy-cuda12x==14.0.0`).
 
 Numba (included in requirements) compiles GPU kernels used in fixed wing examples automatically for GPU acceleration.
 
@@ -77,7 +81,7 @@ python examples/discrete/determinism_breaking.py --slip 0.2
 
 ### Assignment 3: Path Integral Control (Ch. 8)
 
-Path integral control generalizes KL control from linearly solvable MDPs (Ch. 7) to continuous state spaces. Assignment 3 implements both the discrete-time and the continuous-time SDE versions, and test them on four systems: a double integrator, a nonholonomic unicycle, a cart-pole swing-up, and a 13D fixed-wing aircraft.
+Path integral control generalizes KL control from linearly solvable MDPs (Ch. 7) to continuous state spaces. Assignment 3 implements both the discrete-time and the continuous-time SDE versions, and tests them on four systems: a double integrator, a nonholonomic unicycle, a cart-pole swing-up, and a 13D fixed-wing aircraft.
 
 Cart-pole swing-up:
 
