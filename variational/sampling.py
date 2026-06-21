@@ -37,8 +37,11 @@ def desirability_scores(C_values, alpha, xp=np):
     # avoid numerical underflow.
     #
     # ##########################################################
-    raise NotImplementedError("TODO: desirability_scores")
+    
+    # raise NotImplementedError("TODO: desirability_scores")
 
+    C_min = xp.min(C_values)
+    r = xp.exp(-(C_values - C_min) / alpha)
     return r, C_min
 
 
@@ -64,9 +67,11 @@ def free_energy_estimate(C_values, alpha, xp=np):
     # account for the C_min offset.
     #
     # ##########################################################
-    raise NotImplementedError("TODO: free_energy_estimate")
+    
+    # raise NotImplementedError("TODO: free_energy_estimate")
 
-    return F
+    r, C_min = desirability_scores(C_values, alpha, xp)
+    return -alpha * float(xp.log(xp.mean(r))) + C_min
 
 
 def free_energy_convergence(C_values, alpha, xp=np):
@@ -135,6 +140,30 @@ def inverse_cdf_resample(samples, rewards, n_resample=1, rng=None, xp=np):
     # 4. Clip indices to valid range
     #
     # ##########################################################
-    raise NotImplementedError("TODO: inverse_cdf_resample")
+    
+    # raise NotImplementedError("TODO: inverse_cdf_resample")
 
-    return samples[indices], indices
+    if rng is None:
+        rng = np.random.default_rng()
+
+    cdf = xp.cumsum(rewards)
+    r_total = cdf[-1]
+
+    if hasattr(r_total, 'item'):
+        r_total_scalar = r_total.item()
+    else:
+        r_total_scalar = float(r_total)
+
+    d = rng.uniform(0.0, r_total_scalar, size=n_resample)
+    d = xp.asarray(d)
+
+    indices = xp.searchsorted(cdf, d, side='left')
+    indices = xp.clip(indices, 0, len(rewards) - 1)
+
+    if hasattr(indices, 'get'):
+        indices_np = indices.get()
+    else:
+        indices_np = indices
+
+    resampled = samples[indices_np]
+    return resampled, indices_np
