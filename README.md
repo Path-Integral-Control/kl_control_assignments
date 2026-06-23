@@ -6,9 +6,9 @@ Course materials for Stochastic Optimal Control course. Three assignments cover 
 
 | Assignment | Topic | Chapter |
 |------------|-------|---------|
-| [Assignment 1](assignments/assignment1_ch6.pdf) | Variational free energy and Boltzmann sampling | Ch. 6 |
-| [Assignment 2](assignments/assignment2_ch7.pdf) | Linearly solvable MDPs | Ch. 7 |
-| [Assignment 3](assignments/assignment3_ch8.pdf) | Path integral control | Ch. 8 |
+| [Assignment 1](assignments/Assignment1_Ch6.pdf) | Variational free energy and Boltzmann sampling | Ch. 6 |
+| [Assignment 2](assignments/Assignment2_Ch7.pdf) | Linearly solvable MDPs | Ch. 7 |
+| [Assignment 3](assignments/Assignment3_Ch8.pdf) | Path integral control | Ch. 8 |
 
 ## Setup
 
