@@ -55,7 +55,7 @@ python examples/variational/boltzmann_sampling.py --benchmark --gpu
 
 Linearly solvable MDPs exploit the log-transform $Z = \exp(-V/\alpha)$ to convert the nonlinear Bellman equation into a linear recursion $Z_k = M \, Z_{k+1}$. Assignment 2 implements three solution methods on gridworld environments: backward recursion, forward Monte Carlo estimation, and Z-learning. A determinism-breaking exercise (Exercise 7.6) demonstrates the Jensen gap that arises when transitions are stochastic.
 
-https://github.com/user-attachments/assets/676d86e2-3a60-4515-8940-98cac6b2ed4a
+https://github.com/user-attachments/assets/5c60dba7-0cd4-4fd8-b9bd-70194472a2f4
 
 ```bash
 # Backward recursion (Algorithm 12)
@@ -81,7 +81,7 @@ Path integral control generalizes KL control from linearly solvable MDPs (Ch. 7)
 
 Cart-pole swing-up:
 
-https://github.com/user-attachments/assets/46e13171-c41f-481d-8b6d-c9f5916c89c1
+https://github.com/user-attachments/assets/d931b4e5-74d6-4475-adcf-509a7823aa23
 
 ```bash
 python examples/discrete/cartpole.py --animate
@@ -89,7 +89,7 @@ python examples/discrete/cartpole.py --animate
 
 2D double integrator navigation across obstacle environments (use `--env` to switch):
 
-https://github.com/user-attachments/assets/f59958b6-3fc6-45a2-acda-b741fb139cc6
+https://github.com/user-attachments/assets/e72d2c3b-2338-4d09-a391-4a0a767aa0bb
 
 ```bash
 python examples/discrete/double_integrator_navigation.py --env config/environments/forest.yaml --animate
@@ -99,7 +99,7 @@ python examples/discrete/double_integrator_navigation.py --env config/environmen
 
 The effect of horizon length $T$ and noise covariance $\sigma$ on planning behavior:
 
-https://github.com/user-attachments/assets/30bf64ac-d31a-4cdd-a896-c94dcd41f1f1
+https://github.com/user-attachments/assets/cfba2851-8900-496b-9dad-aa6db3044e2f
 
 ```bash
 # Forest: default parameters vs increased horizon and covariance
@@ -136,7 +136,7 @@ python examples/continuous/cartpole_sde.py --animate
 
 Fixed-wing 13D 6DOF aircraft with nominal TECS controller and MPPI:
 
-https://github.com/user-attachments/assets/38f90f4c-b796-4238-85b5-64bf12e1b7ac
+https://github.com/user-attachments/assets/ddca8ba1-0625-47c9-9b6d-baa89692d6fd
 
 ```bash
 python examples/discrete/fixed_wing/nominal.py
