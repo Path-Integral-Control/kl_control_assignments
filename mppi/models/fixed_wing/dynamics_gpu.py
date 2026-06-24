@@ -373,8 +373,10 @@ class FixedWingGPU(FixedWing):
     def step(self, x, u, dt, xp):
         self._ensure_device_arrays()
         K = x.shape[0]
-        x64 = np.asarray(x, dtype=np.float64)
-        u64 = np.asarray(u, dtype=np.float64)
+        x_host = x.get() if hasattr(x, 'get') else x
+        u_host = u.get() if hasattr(u, 'get') else u
+        x64 = np.asarray(x_host, dtype=np.float64)
+        u64 = np.asarray(u_host, dtype=np.float64)
         lo, hi = self.control_bounds
         u64 = np.clip(u64, lo, hi)
 
@@ -386,7 +388,7 @@ class FixedWingGPU(FixedWing):
         _step_kernel[blocks, self._threads](
             d_in, d_out, d_u, self._d_params, dt, self.n_substeps, K)
 
-        return d_out.copy_to_host()
+        return xp.asarray(d_out.copy_to_host())
 
     def full_rollout(self, x0, U_perturbed, dt):
         """Full fused rollout. Returns (states, costs) as numpy arrays.
