@@ -68,9 +68,15 @@ class MPPI:
         # uniform weights.
         #
         # ##########################################################
-        raise NotImplementedError("TODO: _compute_weights")
+        # raise NotImplementedError("TODO: _compute_weights")
 
-        return weights
+        xp = self.xp
+        beta = xp.min(costs)
+        weights = xp.exp(-(costs - beta) / self.lambda_)
+        weights_sum = xp.sum(weights)
+        if weights_sum < 1e-10:
+            return xp.ones(self.K, dtype=self.dtype) / self.K
+        return weights / weights_sum
 
     def _warm_start_shift(self):
         """Shift the nominal control sequence left by one step."""
@@ -115,10 +121,13 @@ class MPPI:
             # and accumulate running costs via self.model.running_cost().
             #
             # ##########################################################
-            raise NotImplementedError("TODO: solve forward step")
-
+            # raise NotImplementedError("TODO: solve forward step")
+            states[:, t + 1] = self.model.step(states[:, t], U_perturbed[:, t], self.dt, xp)
+            costs += self.model.running_cost(states[:, t + 1], U_perturbed[:, t], t, xp)
             if hasattr(self.model, 'clamp_state'):
                 states[:, t + 1] = self.model.clamp_state(states[:, t + 1], xp)
+        
+        costs += self.model.terminal_cost(states[:, -1], xp)
 
         # ##########################################################
         # TODO: Add terminal cost, compute importance weights via
@@ -126,7 +135,10 @@ class MPPI:
         # weighted average of U_perturbed.
         #
         # ##########################################################
-        raise NotImplementedError("TODO: solve update")
+        # raise NotImplementedError("TODO: solve update")
+
+        weights = self._compute_weights(costs)
+        self.U = xp.sum(weights[:, None, None] * U_perturbed, axis=0)
 
         self.trajectories = states
         self.weights = weights
@@ -165,7 +177,16 @@ class MPPI:
             # running costs via self.model.running_cost().
             #
             # ##########################################################
-            raise NotImplementedError("TODO: solve_continuous forward step")
+            # raise NotImplementedError("TODO: solve_continuous forward step")
+
+            x_next = self.model.step(x_t, u_t, self.dt, xp)
+
+            if noise_dim > 0:
+                B = self.model.diffusion(x_t, xp)
+                dW = xp.sqrt(self.dt) * xp.random.randn(K, noise_dim, 1).astype(self.dtype)
+                x_next = x_next + (B @ dW).squeeze(-1)
+
+            costs += self.model.running_cost(x_next, u_t, t, xp)
 
             if hasattr(self.model, 'clamp_state'):
                 x_next = self.model.clamp_state(x_next, xp)
@@ -177,8 +198,13 @@ class MPPI:
         # weighted average of U_perturbed.
         #
         # ##########################################################
-        raise NotImplementedError("TODO: solve_continuous update")
+        # raise NotImplementedError("TODO: solve_continuous update")
 
+        costs += self.model.terminal_cost(states[:, -1], xp)
+
+        weights = self._compute_weights(costs)
+        self.U = xp.sum(weights[:, None, None] * U_perturbed, axis=0)
+        
         self.trajectories = states
         self.weights = weights
         self.costs = costs

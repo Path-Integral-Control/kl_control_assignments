@@ -14,9 +14,9 @@ def euler_step(dynamics_fn, x, u, dt, xp):
     #
     # Evaluate the dynamics f(x, u) and take one step of size dt.
     # ##########################################################
-    raise NotImplementedError("TODO: euler_step")
+    # raise NotImplementedError("TODO: euler_step")
 
-    # return x + ...
+    return x + dynamics_fn(x, u, xp) * dt
 
 
 def rk4_step(dynamics_fn, x, u, dt, xp):
@@ -109,9 +109,14 @@ def euler_maruyama_step(drift_fn, diffusion_fn, x, u, dt, xp):
     # Use drift_fn(x, u, xp) for f, diffusion_fn(x, xp) for G.
     # Sample Brownian increments of the correct variance.
     # ##########################################################
-    raise NotImplementedError("TODO: euler_maruyama_step")
+    #raise NotImplementedError("TODO: euler_maruyama_step")
 
-    # return x + ...
+    drift = drift_fn(x, u, xp)
+    B = diffusion_fn(x, xp)
+    noise_dim = B.shape[2]
+
+    dW = xp.sqrt(dt) * xp.random.randn(x.shape[0], noise_dim, 1).astype(xp.float32)
+    return x + drift * dt + (B @ dW).squeeze(-1)
 
 
 def normalize_quaternion(x, quat_indices, xp):
